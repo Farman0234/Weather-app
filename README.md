@@ -2,6 +2,8 @@
 Weather App 🌤️
 Welcome to the Weather App! 🌦️ This is a simple and intuitive weather app where you can easily check the current weather of your favorite cities. Just type in the city name, and get real-time results (temperature, weather) in an instant.
 
+you can Check my weather app https://cityweatherlive.netlify.app/
+
 🌍 Features
 Search bar 🖊️: Quickly type in any city name to check its weather.
 
