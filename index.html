@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+
+  <!-- FontAwesome CDN Link -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body bgcolor="#51e2f5">
+
+  <center>
+    <h1>Weather App</h1>
+
+    <table border="2" cellpadding="10" cellspacing="5">
+      <tr>
+        <td colspan="2" align="center">
+          <img src="./download-removebg-preview.png" alt="Weather Image" width="200">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" align="center">
+          <form action="" onsubmit="weather(); return false;">
+            <input type="search" name="city" id="serch" placeholder="Enter City Name">
+            <button type="submit">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </form>
+        </td>
+      </tr>
+    </table>
+
+    <h2>
+      <!-- Example: Displaying weather icon -->
+      <i class="fas fa-sun"></i> Today's Weather
+    </h2>
+    <h2 id="results">
+      
+    </h2>
+  </center>
+
+  <script src="./index.js"></script>
+
+</body>
+</html>
