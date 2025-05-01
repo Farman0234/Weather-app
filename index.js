@@ -1,22 +1,57 @@
 function weather() {
-  let city = document.getElementById("serch").value.toLowerCase();
-  let results = document.getElementById("results");
+  try {
+    let inputRef = document.getElementById("city");
+    let results = document.getElementById("results");
 
-  // console.log(city,result)
+    const cityName = inputRef.value.toLowerCase();
 
-  if (city == "lahore") {
-    results.innerHTML = "Today Lahore weather is 35 degree";
-  } else if (city == "karachi") {
-    results.innerHTML = "Today karachi Weather is 45 degree";
-  } else if (city == "Islamabad") {
-    results.innerHTML = "Today Islamabad Weather is 26 degree";
-  } else if (city == "Peshaware") {
-    results.innerHTML = "Today Peshawar weather is 30 degree";
-  } else if (city == "Rwalpindi") {
-    results.innerHTML = "Today Rawalpindi weather is 28 degree";
-  } else if (city == "Faisalabad") {
-    results.innerHTML = "Today Islamabad weather is 26 degree";
-  } else {
-    results.innerHTML = "You Enter Invalid City please Try agian";
+    if (inputRef.value.trim() == "") {
+      alert("invalid input ref");
+      return;
+    }
+
+    const weatherApi = fetch(
+      `https://p2pclouds.up.railway.app/v1/learn/weather?city=${cityName}`,
+      {
+        method: "GET",
+      }
+    );
+
+    if (weatherApi.ok === false) {
+      results.innerHTML = "check your Internet";
+    }
+
+    weatherApi
+      .then((res) => {
+        const data = res.json();
+        return data;
+      })
+      .then((data) => {
+        console.log(data);
+        results.style.padding = "10px";
+        results.style.width = "350px";
+        results.style.alignContent = "center";
+        results.style.textAlign = "center";
+        results.style.background = "#e6f7ff";
+        results.style.borderRadius = "9px";
+        results.style.boxShadow = "0 0 10px ";
+
+        console.log(data.current.temp_c);
+        results.innerHTML = `
+    <h2>WEATHER IN ${cityName.toUpperCase()}</h2>
+    <p>🌡Temperature:${data.current.temp_c}</p>
+    <p>☁ Condition: ${data.current.condition.text}</p>
+    <img src ="${
+      data.current.condition.icon
+    }" alt="weather Icon  style="margin-left:10px;"/>
+    <p>⏰ Last Update: ${data.current.last_updated}</p>
+    `;
+      })
+      .catch((error) => {
+        console.log(error);
+        results.innerHTML = `<p style="colour:red;"> ${error.message}</p>`;
+      });
+  } catch (error) {
+    console.log(error);
   }
-};
+}
